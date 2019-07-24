@@ -56,7 +56,7 @@ class BDManage:
 
 
     def execute_select_one(self, sttmt):
-        result = None
+        result = ()
         try:
             self.connect()
             result = self.__get_cursor().execute(sttmt).fetchone()
@@ -70,7 +70,7 @@ class BDManage:
 
 
     def execute_select_all(self, sttmt):
-        result = None
+        result = []
         try:
             self.connect()
             result = self.__get_cursor().execute(sttmt).fetchall()

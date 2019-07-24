@@ -112,9 +112,24 @@ class OPMWebComicBDActions:
             ))
 
 
-    def select_capitulos():
+    def select_capitulos(self):
         return self.objbdman.execute_select_all("SELECT * FROM CAPITULO")
 
 
-    def delete_capitulos():
+    def select_capitulo_by(self, column_filter, value_to_find):
+        return self.objbdman.execute_select_one("SELECT * FROM CAPITULO WHERE %s = '%s'" % (
+            column_filter,
+            value_to_find
+        ))
+
+
+    def delete_capitulos(self):
         return self.objbdman.execute_delete("DELETE FROM CAPITULO")
+
+    
+    def delete_capitulos_by(self, column_filter, value_to_find):
+        return self.objbdman.execute_delete("DELETE FROM CAPITULO WHERE %s = '%s'" % (
+            column_filter,
+            value_to_find
+        ))
+    
