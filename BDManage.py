@@ -99,23 +99,6 @@ class BDManage:
         return result
 
 
-    def init_tables(self):
-        self.execute_sttmt("""CREATE TABLE IF NOT EXISTS CAPITULO (
-            id_capitulo INTEGER PRIMARY KEY AUTOINCREMENT,
-            numero NUMERIC NOT NULL,
-            nombre VARCHAR(150) NOT NULL,
-            descripcion VARCHAR(300)
-            )""")
-
-
-    def add_capitulo(self, numero, nombre, descripcion):
-        self.execute_insert("INSERT INTO CAPITULO VALUES (null, ?, ?, ?)",
-            values=(
-                numero,
-                nombre,
-                descripcion
-            ))
-
 # if __name__ == "__main__":
 #     c = BDManage()
 #     c.init_tables()

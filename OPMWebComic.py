@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import urllib.parse as uparse
+from BDManage import BDManage
+
 
 class OPMWebComic:
     
@@ -79,4 +81,40 @@ class OPMWebComic:
                 'params': params
             })
         return lista_capitulos
+
+
+class OPMWebComicBDActions:
     
+    def __init__(self):
+        self.__objbdman = BDManage()
+
+
+    @property
+    def objbdman(self):
+        return self.__objbdman
+
+
+    def init_tables(self):
+        self.objbdman.execute_sttmt("""CREATE TABLE IF NOT EXISTS CAPITULO (
+            id_capitulo INTEGER PRIMARY KEY AUTOINCREMENT,
+            numero NUMERIC NOT NULL,
+            nombre VARCHAR(150) NOT NULL,
+            descripcion VARCHAR(300)
+            )""")
+
+
+    def add_capitulo(self, numero, nombre, descripcion):
+        self.objbdman.execute_insert("INSERT INTO CAPITULO VALUES (null, ?, ?, ?)",
+            values=(
+                numero,
+                nombre,
+                descripcion
+            ))
+
+
+    def select_capitulos():
+        return self.objbdman.execute_select_all("SELECT * FROM CAPITULO")
+
+
+    def delete_capitulos():
+        return self.objbdman.execute_delete("DELETE FROM CAPITULO")
