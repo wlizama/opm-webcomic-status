@@ -99,16 +99,18 @@ class OPMWebComicBDActions:
             id_capitulo INTEGER PRIMARY KEY AUTOINCREMENT,
             numero NUMERIC NOT NULL,
             nombre VARCHAR(150) NOT NULL,
-            descripcion VARCHAR(300)
+            descripcion VARCHAR(300),
+            fecha_registro text
             )""")
 
 
-    def add_capitulo(self, numero, nombre, descripcion):
-        self.objbdman.execute_insert("INSERT INTO CAPITULO VALUES (null, ?, ?, ?)",
+    def add_capitulo(self, numero, nombre, descripcion, fecha_registro):
+        self.objbdman.execute_insert("INSERT INTO CAPITULO VALUES (null, ?, ?, ?, ?)",
             values=(
                 numero,
                 nombre,
-                descripcion
+                descripcion,
+                fecha_registro
             ))
 
 
