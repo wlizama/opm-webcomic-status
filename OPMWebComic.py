@@ -87,7 +87,7 @@ class OPMWebComicBDActions:
     
     def __init__(self):
         self.__objbdman = BDManage()
-
+        self.init_tables()
 
     @property
     def objbdman(self):
