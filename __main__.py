@@ -21,24 +21,32 @@ def main():
     opmwc_bd_act = OPMWebComicBDActions()
     webc_lista_capitulos = opmwc.get_lista_capitulos()
     now = datetime.datetime.now()
+    arr_nuevos_capitulos = []
+
     """ Buscar si capítulo no existe en BD
     """
     for webc_capitulo in webc_lista_capitulos:
         html, content_tag_href, content_string, query_string, params = webc_capitulo.values()
-        # iid_cap = params['iid'][0]
         cap_numero = get_real_number(content_string)
         exist_cap = opmwc_bd_act.select_capitulo_by('numero', cap_numero)
         if not exist_cap:
-            print("El capítulo %s no existe en BD, es nuevo 😱 !!!" % cap_numero)
+            # print("El capítulo %s no existe en BD, es nuevo 😱 !!!" % cap_numero)
+
+            # agregar a BD
             opmwc_bd_act.add_capitulo(
                 cap_numero,
                 content_string,
                 "Capítulo ubicado en %s" % content_tag_href,
                 now)
-        else:
-            print("No hay capítulos nuevos hoy : %s" % now)
 
+            # agregar a array para envio de notificación
+            arr_nuevos_capitulos.append({
+                "cap_numero" : cap_numero,
+                "nombre": content_string,
+                "full_url" : "%s%s" % (opmwc.URL, content_tag_href)
+            })
+
+    print(arr_nuevos_capitulos)
 
 if __name__ == "__main__":
     main()
-    # print(get_real_number("第１０５話"))
