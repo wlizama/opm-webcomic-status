@@ -1,8 +1,12 @@
 from OPMWebComic import OPMWebComic, OPMWebComicBDActions
-from CommonActions import dtnow, get_real_number, notificar_w10toast
+from CommonActions import (
+    sed_mail,
+    dtnow,
+    get_real_number,
+    notificar_w10toast,
+    getConfigValue)
 
 # from pprint import pprint
-
 
 def main():
     opmwc = OPMWebComic()
@@ -35,4 +39,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    sed_mail(
+        "asunto sin importacia OPM WC 01",
+        getConfigValue("MAIL", "EMAIL_EMISOR"),
+        getConfigValue("MAIL", "EMAIL_EMISOR_PWD"),
+        getConfigValue("MAIL", "EMAIL_RECEPTOR"),
+        "Cuerpo de OPM WC !!")

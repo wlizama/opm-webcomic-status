@@ -1,8 +1,17 @@
 import datetime
+import email.message
+import smtplib
+import configparser
 from win10toast import ToastNotifier
 
 def dtnow():
     return datetime.datetime.now()
+
+
+def getConfigValue(group, key):
+    config = configparser.ConfigParser()
+    config.read("config.ini")
+    return config[group][key]
 
 
 def get_real_number(number_str):
@@ -34,4 +43,24 @@ def notificar_w10toast(arr_capitulos):
         icon_path=None,
         threaded=True,
         duration=30)
+
+
+def sed_mail(asunto, email_emisor, email_emisor_pwd, email_receptor, body):
+    SUBJECT = asunto
+    FROM_ADDR = email_emisor
+    FROM_ADDR_PASS = email_emisor_pwd
+    TO_ADDR = email_receptor
+
+    msg = email.message.Message()
+    msg["Subject"] = SUBJECT
+    msg["From"] = FROM_ADDR
+    msg["To"] = TO_ADDR
+    msg.add_header('Content-Type','text/html')
+    msg.set_payload(body)
+
+    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)  # mail server ip
+    server.login(FROM_ADDR, FROM_ADDR_PASS)
+    server.sendmail(msg["from"],msg["To"].split(";"), msg.as_string())
+    server.set_debuglevel(1)
+    server.quit()
 
