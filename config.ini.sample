@@ -2,3 +2,6 @@
 EMAIL_EMISOR=un.correo@super.ok
 EMAIL_EMISOR_PWD=supercalifragilisticoesticuertiladidoso
 EMAIL_RECEPTOR=correo.de.un@ninja.xd
+
+[PATHS]
+NOTIFICACCION_ICO=./favicon.ico

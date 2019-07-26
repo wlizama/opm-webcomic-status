@@ -33,7 +33,7 @@ def notificar_w10toast(title, body):
     toaster.show_toast(
         title,
         body,
-        icon_path=None,
+        icon_path=getConfigValue("PATHS", "NOTIFICACCION_ICO"),
         threaded=True,
         duration=30)
 
