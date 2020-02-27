@@ -2,7 +2,7 @@ import datetime
 import email.message
 import smtplib
 import configparser
-from win10toast import ToastNotifier
+# from win10toast import ToastNotifier
 
 def dtnow():
     return datetime.datetime.now()
@@ -27,15 +27,15 @@ def get_real_number(number_str):
     return real_num
 
 
-def notificar_w10toast(title, body):
+# def notificar_w10toast(title, body):
 
-    toaster = ToastNotifier()
-    toaster.show_toast(
-        title,
-        body,
-        icon_path=getConfigValue("PATHS", "NOTIFICACCION_ICO"),
-        threaded=True,
-        duration=30)
+#     toaster = ToastNotifier()
+#     toaster.show_toast(
+#         title,
+#         body,
+#         icon_path=getConfigValue("PATHS", "NOTIFICACCION_ICO"),
+#         threaded=True,
+#         duration=30)
 
 
 def sed_mail(asunto, email_emisor, email_emisor_pwd, email_receptor, body):

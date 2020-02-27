@@ -3,7 +3,7 @@ from CommonActions import (
     sed_mail,
     dtnow,
     get_real_number,
-    notificar_w10toast,
+    # notificar_w10toast,
     getConfigValue)
 
 # from pprint import pprint
@@ -57,8 +57,8 @@ def main():
             getConfigValue("MAIL", "EMAIL_RECEPTOR"),
             body_mail)
 
-        if is_sended:
-            notificar_w10toast(asunto, str_body_notf)
+        # if is_sended:
+        #     notificar_w10toast(asunto, str_body_notf)
             
 
 
